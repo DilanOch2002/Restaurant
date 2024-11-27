@@ -1,0 +1,232 @@
+/* Estilos generales de la página */
+.mesas-page {
+    padding: 20px;
+    background: #f3f4f6; /* Fondo claro */
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* Contenedor principal */
+.mesas-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alineación a la izquierda */
+    width: 66.66%;
+    margin: 0 auto;
+    background: #ffffff; /* Fondo blanco */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.mesas-content h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+    color: #007bff; /* Azul vibrante */
+}
+
+/* Contenedor de acciones (botón de agregar mesa) */
+.acciones {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Botón de agregar mesa */
+.agregar-btn {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.agregar-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #0056b3, #003f7f);
+}
+
+/* Contenedor de mesas */
+.mesas-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; /* Alinea las mesas a la izquierda */
+    width: 100%;
+}
+
+/* Tarjetas de mesa */
+.mesa-card {
+    background: linear-gradient(135deg, #e2e8f0, #f8fafc);
+    padding: 20px;
+    border-radius: 12px;
+    border: none;
+    width: 180px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.mesa-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.mesa-card div {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Estado de la mesa */
+.mesa-card div:last-child {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Estilos de iconos */
+.iconos {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.icon-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e2e8f0;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icon-btn:hover {
+    background-color: #cbd5e1;
+    transform: scale(1.1);
+}
+
+.editar-btn {
+    color: #007bff;
+}
+
+.eliminar-btn {
+    color: #e53e3e;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    width: 350px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-content label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.modal-content button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.modal-content button:hover {
+    transform: translateY(-2px);
+}
+
+.modal-content button:first-child {
+    background: #007bff;
+    color: white;
+}
+
+.modal-content button:first-child:hover {
+    background: #0056b3;
+}
+
+.modal-content button:last-child {
+    background: #e2e8f0;
+    color: #333;
+}
+
+.modal-content button:last-child:hover {
+    background: #cbd5e1;
+}
+
+/* Mensaje */
+.mensaje {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mensaje.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.mensaje.success {
+    background-color: #d4edda;
+    color: #155724;
+}

@@ -1,0 +1,180 @@
+/* Reportes.css */
+
+/* Estilo general de la página */
+.reportes-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    color: #2c3e50;
+  }
+  
+  /* Estilo para el título principal */
+  .reportes-container h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #34495e;
+  }
+  
+  /* Estilo para la descripción */
+  .reportes-container p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo para la sección de reportes */
+  .reportes-section {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Estilo del navbar */
+  .navbar {
+    background-color: #333;
+    padding: 1rem;
+  }
+  
+  .navbar-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar-item {
+    margin: 0 15px;
+  }
+  
+  .navbar-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .navbar-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Estilo para la tabla de ventas */
+  .ventas-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .ventas-table th, .ventas-table td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  
+  .ventas-table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+  
+  .ventas-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .ventas-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Estilo para las tarjetas de reporte */
+  .reporte-card {
+    background-color: #ffffff;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    padding: 20px;
+    width: calc(33.33% - 20px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .reporte-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .reporte-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+  
+  .reporte-card p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #7f8c8d;
+  }
+  
+  /* Estilo para el botón de generar reporte */
+  .btn-generar {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-generar:hover {
+    background-color: #27ae60;
+  }
+  
+  /* Estilo para el formulario de búsqueda */
+.buscar-venta {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .buscar-input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+  }
+  
+  .buscar-btn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .buscar-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Mensaje de error */
+  .error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .eliminar-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .eliminar-btn:hover {
+    background-color: #c0392b;
+  }
+  

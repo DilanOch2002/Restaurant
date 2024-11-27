@@ -1,0 +1,71 @@
+/* Sidebar container */
+.sidebar {
+  width: 250px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+/* Toggle button */
+.toggle-button {
+  background: none;
+  border: none;
+  color: #ff6262; /* Rojo claro para el icono del menú */
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Profile, menu, and logout section */
+.profile-section, .menu, .logout-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .profile-section,
+.sidebar.collapsed .menu,
+.sidebar.collapsed .logout-section {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Menu items */
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu ul li {
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+  color: #fff;
+}
+
+.menu ul li:hover,
+.menu ul li.active {
+  background-color: #ff6262; /* Rojo claro al pasar el mouse o al seleccionar */
+  color: white;
+}
+
+/* Logout button */
+.logout-button {
+  background-color: #ff6262; /* Rojo para el botón de cerrar sesión */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #e14a4a; /* Rojo más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Efecto de escalado al pasar el mouse */
+}

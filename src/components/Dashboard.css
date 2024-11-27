@@ -1,0 +1,119 @@
+/* Estilos principales */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar Superior */
+.top-navbar {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+}
+
+.top-navbar button {
+  margin-right: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Botón de Ventas */
+.btn-ventas {
+  background-color: #d3d3d3; /* Gris claro */
+  color: #333; /* Texto oscuro */
+  transition: background-color 0.3s ease;
+}
+
+.btn-ventas:hover {
+  background-color: #c0c0c0;
+}
+
+/* Botón de Reportes */
+.btn-reportes {
+  background-color: orange; /* Fondo naranja */
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.btn-reportes:hover {
+  background-color: #e69500;
+}
+
+/* Layout Principal */
+.main-layout {
+  display: flex;
+  height: calc(100vh - 50px); /* Ajusta la altura restando el espacio del navbar */
+}
+
+/* Menú Lateral */
+.sidebar {
+  width: 33.33%; /* Ocupa un tercio del ancho de la pantalla */
+  background-color: #343a40; /* Fondo oscuro */
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Contenido Principal */
+.main-content {
+  flex: 1; /* El contenido principal ocupa el resto del ancho */
+  padding: 20px;
+  background-color: #f8f9fa; /* Fondo claro */
+}
+
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Menú */
+.menu ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.menu li {
+  margin: 10px 0;
+  padding: 10px;
+  text-align: center;
+  background-color: #495057;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu li:hover {
+  background-color: #6c757d;
+}
+
+/* Contenido Principal */
+.main-content {
+  flex: 2;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+  

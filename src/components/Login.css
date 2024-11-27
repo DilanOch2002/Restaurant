@@ -1,0 +1,131 @@
+/* Fondo rojo suave para la página */
+.login-background {
+  background-color: #ff6e69; /* Rojo suave */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor principal del formulario de login */
+.login-container {
+  width: 400px;
+  background-color: #ffffff; /* Fondo blanco */
+  padding: 40px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Sección de bienvenida */
+.welcome-section {
+  margin-bottom: 30px;
+}
+
+.image-container {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.user-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h2 {
+  font-size: 26px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #7f8c8d;
+  margin-bottom: 25px;
+}
+
+/* Estilo del formulario de login */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Reducido el espacio entre los campos */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 12px; /* Reducido el tamaño de la fuente */
+  color: #7f8c8d;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+/* Reducir el ancho de los campos de entrada */
+.input-field {
+  padding: 12px;
+  font-size: 16px;
+  width: 100%; /* Asegura que ocupe el ancho completo del contenedor */
+  max-width: 350px; /* Limita el tamaño máximo del campo */
+  margin: 0 auto; /* Centra el campo dentro del contenedor */
+  border: 1px solid #bdc3c7;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background-color: #ecf0f1;
+}
+
+.input-field:focus {
+  border-color: #3498db;
+  background-color: #ffffff;
+  outline: none;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: -10px;
+  font-weight: 500;
+}
+
+.submit-button {
+  padding: 12px;
+  font-size: 16px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #2980b9;
+}
+
+.additional-links {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #34495e;
+}
+
+.link {
+  color: #3498db;
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #2980b9;
+}
+

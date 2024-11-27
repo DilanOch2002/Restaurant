@@ -1,0 +1,76 @@
+/* Fondo rojo suave para la página */
+.login-background {
+    background-color: #ff6e69; /* Rojo suave */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor principal del formulario de registro */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    background-color: #ffffff; /* Fondo blanco */
+}
+
+/* Estilo del formulario */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Reducido el espacio entre los campos */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.input-field {
+    padding: 10px; /* Ajustado el padding para que los campos no se vean tan grandes */
+    font-size: 16px;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    background-color: #ecf0f1;
+}
+
+.input-field:focus {
+    border-color: #3498db;
+    background-color: #ffffff;
+    outline: none;
+}
+
+.submit-button {
+    padding: 10px; /* Ajustado el tamaño del padding */
+    font-size: 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #2980b9;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 14px;
+}
+
+/* Botón de mostrar/ocultar contraseña */
+.toggle-password-button {
+    background-color: transparent;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 3px; /* Reducido el margen para que no esté tan separado */
+    align-self: flex-start;
+}
