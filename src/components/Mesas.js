@@ -15,7 +15,7 @@ const Mesas = () => {
     // Función para obtener las mesas de la API
     const obtenerMesas = async () => {
         try {
-            const response = await fetch('https://localhost:44393/api/Mesas');
+            const response = await fetch('https://localhost:44393/api/Mesas/obtener');
             if (!response.ok) throw new Error('Error al cargar las mesas');
             const data = await response.json();
             setMesas(data);
@@ -88,7 +88,7 @@ const Mesas = () => {
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify(nuevaMesa),
                   })
-                : await fetch('https://localhost:44393/api/Mesas', {
+                : await fetch('https://localhost:44393/api/Mesas/obtener', {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify(nuevaMesa),

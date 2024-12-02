@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './PaymentGateway.css';
 
-const PaymentGateway = ({ onPaymentSuccess }) => {
+const PaymentGateway = ({ onPaymentSuccess, clearCart }) => {
   const location = useLocation();
   const totalAmount = location.state?.totalAmount || 0;
   const cartProducts = location.state?.cartProducts || [];
-  
+
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
-  const [paymentConfirmed, setPaymentConfirmed] = useState(false);
+  const [paymentDetails, setPaymentDetails] = useState({
+    cardNumber: '',
+    expiryDate: '',
+    cvv: '',
+    bankName: '',
+    accountNumber: '',
+    cashReceived: '',
+  });
 
-  // Cargar los métodos de pago desde la API
   useEffect(() => {
     const fetchPaymentMethods = async () => {
       try {
@@ -28,21 +36,77 @@ const PaymentGateway = ({ onPaymentSuccess }) => {
 
   const handlePaymentMethodChange = (event) => {
     setSelectedPaymentMethod(event.target.value);
+    setPaymentDetails({
+      cardNumber: '',
+      expiryDate: '',
+      cvv: '',
+      bankName: '',
+      accountNumber: '',
+      cashReceived: '',
+    }); // Reiniciar campos al cambiar método
+  };
+
+  const handlePaymentDetailsChange = (event) => {
+    const { name, value } = event.target;
+    setPaymentDetails((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
   };
 
   const handlePayment = () => {
-    if (selectedPaymentMethod) {
-      setPaymentConfirmed(true);
-      onPaymentSuccess();
+    if (!selectedPaymentMethod) {
+      toast.error('Por favor selecciona un método de pago.');
+      return;
     }
+
+    // Validar detalles de pago específicos según el método seleccionado
+    if (
+      selectedPaymentMethod === 'Tarjeta de Crédito' ||
+      selectedPaymentMethod === 'Tarjeta de Débito'
+    ) {
+      if (!paymentDetails.cardNumber || !paymentDetails.expiryDate || !paymentDetails.cvv) {
+        toast.error('Por favor, completa todos los datos de la tarjeta.');
+        return;
+      }
+    } else if (selectedPaymentMethod === 'Tranferencia') {
+      if (!paymentDetails.bankName || !paymentDetails.accountNumber) {
+        toast.error('Por favor, completa los datos de la transferencia bancaria.');
+        return;
+      }
+    } else if (selectedPaymentMethod === 'Efectivo') {
+      if (!paymentDetails.cashReceived) {
+        toast.error('Por favor, indica la cantidad recibida en efectivo.');
+        return;
+      }
+    }
+
+    toast.success('¡Pago realizado con éxito!', {
+      position: 'top-center',
+      autoClose: 3000,
+    });
+
+    setTimeout(() => {
+      setSelectedPaymentMethod('');
+      setPaymentDetails({
+        cardNumber: '',
+        expiryDate: '',
+        cvv: '',
+        bankName: '',
+        accountNumber: '',
+        cashReceived: '',
+      });
+      if (clearCart) clearCart(); // Vaciar el carrito
+      if (onPaymentSuccess) onPaymentSuccess(); // Notificar el éxito
+    }, 3000);
   };
 
   return (
     <div className="payment-gateway">
+      <ToastContainer />
       <h2>Elige el método de pago</h2>
       <p>Total a pagar: ${totalAmount.toFixed(2)}</p>
-      
-      {/* Opción desplegable para seleccionar el método de pago */}
+
       <div className="payment-options">
         <label htmlFor="payment-method">Selecciona un método de pago:</label>
         <select
@@ -59,20 +123,81 @@ const PaymentGateway = ({ onPaymentSuccess }) => {
         </select>
       </div>
 
-      {/* Mostrar los detalles del método de pago si es necesario */}
-      {selectedPaymentMethod && selectedPaymentMethod === 'card' && (
+      {/* Renderizado de formularios específicos */}
+      {['Tarjeta de Crédito', 'Tarjeta de Débito'].includes(selectedPaymentMethod) && (
         <div className="card-details">
+          <h4>Detalles de Tarjeta</h4>
           <label>
             Número de tarjeta:
-            <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" />
+            <input
+              type="text"
+              name="cardNumber"
+              value={paymentDetails.cardNumber}
+              onChange={handlePaymentDetailsChange}
+              placeholder="XXXX-XXXX-XXXX-XXXX"
+            />
           </label>
           <label>
             Fecha de vencimiento:
-            <input type="text" placeholder="MM/AA" />
+            <input
+              type="text"
+              name="expiryDate"
+              value={paymentDetails.expiryDate}
+              onChange={handlePaymentDetailsChange}
+              placeholder="MM/AA"
+            />
           </label>
           <label>
             CVV:
-            <input type="text" placeholder="123" />
+            <input
+              type="text"
+              name="cvv"
+              value={paymentDetails.cvv}
+              onChange={handlePaymentDetailsChange}
+              placeholder="123"
+            />
+          </label>
+        </div>
+      )}
+
+      {selectedPaymentMethod === 'Tranferencia' && (
+        <div className="transfer-details">
+          <h4>Detalles de Transferencia Bancaria</h4>
+          <label>
+            Banco:
+            <input
+              type="text"
+              name="bankName"
+              value={paymentDetails.bankName}
+              onChange={handlePaymentDetailsChange}
+              placeholder="Nombre del banco"
+            />
+          </label>
+          <label>
+            Número de cuenta:
+            <input
+              type="text"
+              name="accountNumber"
+              value={paymentDetails.accountNumber}
+              onChange={handlePaymentDetailsChange}
+              placeholder="XXXXXXXXXX"
+            />
+          </label>
+        </div>
+      )}
+
+      {selectedPaymentMethod === 'Efectivo' && (
+        <div className="cash-details">
+          <h4>Detalles de Pago en Efectivo</h4>
+          <label>
+            Cantidad recibida:
+            <input
+              type="text"
+              name="cashReceived"
+              value={paymentDetails.cashReceived}
+              onChange={handlePaymentDetailsChange}
+              placeholder="Cantidad en efectivo"
+            />
           </label>
         </div>
       )}
@@ -81,9 +206,6 @@ const PaymentGateway = ({ onPaymentSuccess }) => {
         Confirmar Pago
       </button>
 
-      {paymentConfirmed && <p className="payment-confirmation">¡Pago exitoso!</p>}
-
-      {/* Mostrar productos del carrito */}
       <h3>Productos en el carrito</h3>
       <div className="cart-products">
         <table>
