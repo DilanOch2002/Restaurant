@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './Mesas.css';
 
 const Mesas = () => {
@@ -10,9 +12,7 @@ const Mesas = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [editIndex, setEditIndex] = useState(null);
     const [mensajeError, setMensajeError] = useState('');
-    const [mensajeExito, setMensajeExito] = useState('');
 
-    // Función para obtener las mesas de la API
     const obtenerMesas = async () => {
         try {
             const response = await fetch('https://localhost:44393/api/Mesas/obtener');
@@ -24,12 +24,10 @@ const Mesas = () => {
         }
     };
 
-    // Cargar mesas al montar el componente
     useEffect(() => {
         obtenerMesas();
     }, []);
 
-    // Validación para entradas de solo números positivos
     const handlePositiveNumberInput = (setter) => (e) => {
         const value = parseInt(e.target.value, 10);
         if (!isNaN(value) && value >= 0) {
@@ -37,36 +35,38 @@ const Mesas = () => {
         }
     };
 
-    // Función para actualizar el estado de la mesa
-    const actualizarEstado = async (id, estadoActual) => {
-        try {
-            const nuevoEstado = !estadoActual; // Cambiar el estado: si es false, se pone true, y viceversa
-            const response = await fetch(`https://localhost:44393/api/Mesas/${id}/estado`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ estado: nuevoEstado }),
-            });
+    const actualizarActivo = async (id_mesa, activoActual) => {
+        const endpoint = activoActual
+            ? `https://localhost:44393/api/Mesas/${id_mesa}/desactivar`
+            : `https://localhost:44393/api/Mesas/${id_mesa}/activar`;
 
-            if (!response.ok) {
-                throw new Error('Error al actualizar el estado de la mesa');
+        const action = activoActual ? 'desactivar' : 'activar';
+
+        if (window.confirm(`¿Estás seguro de que deseas ${action} esta mesa?`)) {
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error al intentar ${action} la mesa.`);
+                }
+
+                const mesasActualizadas = mesas.map((mesa) =>
+                    mesa.id_mesa === id_mesa ? { ...mesa, activo: !activoActual } : mesa
+                );
+                setMesas(mesasActualizadas);
+
+                toast.success(`Mesa ${activoActual ? 'desactivada' : 'activada'} exitosamente!`);
+            } catch (error) {
+                console.error(`Error al ${action} la mesa:`, error);
+                toast.error(`Ocurrió un error al intentar ${action} la mesa.`);
             }
-
-            // Actualizar el estado de la mesa en la lista
-            const mesasActualizadas = mesas.map((mesa) =>
-                mesa.id_mesa === id ? { ...mesa, estado: nuevoEstado } : mesa
-            );
-            setMesas(mesasActualizadas);
-
-            setMensajeExito('Estado de la mesa actualizado con éxito.');
-            setTimeout(() => setMensajeExito(''), 3000); // Limpiar mensaje después de 3 segundos
-        } catch (error) {
-            setMensajeError(error.message || 'Hubo un error al actualizar el estado de la mesa.');
         }
     };
 
-    // Guardar o actualizar mesa
     const guardarMesa = async () => {
-        // Validaciones de campos
         if (!numeroMesa || !capacidad || !descripcion) {
             setMensajeError('Por favor, completa todos los campos.');
             return;
@@ -75,13 +75,11 @@ const Mesas = () => {
         const nuevaMesa = {
             numeromesa: numeroMesa,
             capacidad: capacidad,
-            estado: false,
+            activo: true,
             descripcion,
         };
 
         try {
-            console.log('Datos enviados:', JSON.stringify(nuevaMesa));
-
             const response = isEditing
                 ? await fetch(`https://localhost:44393/api/Mesas/${mesas[editIndex].id_mesa}`, {
                       method: 'PUT',
@@ -109,8 +107,7 @@ const Mesas = () => {
                 setMesas([...mesas, data]);
             }
 
-            setMensajeExito('Mesa agregada con éxito.');
-            setTimeout(() => setMensajeExito(''), 3000);
+            toast.success('Mesa guardada con éxito.');
             setShowModal(false);
             setNumeroMesa(0);
             setCapacidad(0);
@@ -118,12 +115,13 @@ const Mesas = () => {
             setMensajeError('');
         } catch (error) {
             console.error('Error al guardar la mesa:', error);
-            setMensajeError(error.message || 'Hubo un error al guardar la mesa.');
+            toast.error(error.message || 'Hubo un error al guardar la mesa.');
         }
     };
 
     return (
         <div className="mesas-page">
+            <ToastContainer />
             <div className="mesas-content">
                 <h3>Gestión de Mesas</h3>
                 <div className="acciones">
@@ -132,19 +130,18 @@ const Mesas = () => {
                     </button>
                 </div>
                 {mensajeError && <div className="mensaje error">{mensajeError}</div>}
-                {mensajeExito && <div className="mensaje exito">{mensajeExito}</div>}
                 <div className="mesas-container">
-                    {mesas.map((mesa, index) => (
+                    {mesas.map((mesa) => (
                         <div className="mesa-card" key={mesa.id_mesa}>
                             <div>Numero de Mesa: {mesa.numero_mesa}</div>
                             <div>Capacidad: {mesa.capacidad}</div>
                             <div>Descripción: {mesa.descripcion}</div>
-                            <div>Estado: {mesa.estado ? 'Disponible' : 'No disponible'}</div>
+                            <div>Estado: {mesa.activo ? 'Disponible' : 'No disponible'}</div>
                             <button
-                                onClick={() => actualizarEstado(mesa.id_mesa, mesa.estado)}
-                                className={mesa.estado ? 'desactivar-btn' : 'activar-btn'}
+                                onClick={() => actualizarActivo(mesa.id_mesa, mesa.activo)}
+                                className={mesa.activo ? 'desactivar-btn' : 'activar-btn'}
                             >
-                                {mesa.estado ? 'Desactivar' : 'Activar'}
+                                {mesa.activo ? 'Desactivar' : 'Activar'}
                             </button>
                         </div>
                     ))}
@@ -188,8 +185,4 @@ const Mesas = () => {
 };
 
 export default Mesas;
-
-
-
-
 

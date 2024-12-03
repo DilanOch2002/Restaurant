@@ -10,7 +10,8 @@
 .mesas-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Alineación a la izquierda */
+    align-items: center; /* Alinea los elementos al centro */
+    justify-content: center; /* Centra los elementos en el eje vertical */
     width: 66.66%;
     margin: 0 auto;
     background: #ffffff; /* Fondo blanco */
@@ -25,7 +26,9 @@
     font-weight: bold;
     margin: 0 0 20px 0;
     color: #007bff; /* Azul vibrante */
+    text-align: center; /* Centrar el texto */
 }
+
 
 /* Contenedor de acciones (botón de agregar mesa) */
 .acciones {
@@ -55,13 +58,15 @@
     background: linear-gradient(135deg, #0056b3, #003f7f);
 }
 
+
 /* Contenedor de mesas */
 .mesas-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: flex-start; /* Alinea las mesas a la izquierda */
+    justify-content: center; /* Cambiado de flex-start a center para centrar las mesas */
     width: 100%;
+    margin-top: 20px; /* Opcional: agregar un poco de espacio superior */
 }
 
 /* Tarjetas de mesa */

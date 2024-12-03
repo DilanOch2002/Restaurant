@@ -195,29 +195,42 @@
   margin: 5px 0;
 }
 
+/* Estilos para el botón de eliminar en el carrito */
 .remove-button {
-  background-color: #ff4d4d;
+  background-color: #ff4d4d; /* Fondo rojo */
   color: white;
   border: none;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  font-size: 16px; /* Este es el tamaño del icono */
+  width: 40px; /* Un poco más grande para una mejor visibilidad */
+  height: 40px;
+  font-size: 18px; /* Ajusta el tamaño del icono */
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s; /* Transición de color y transformación */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera para darle profundidad */
 }
 
+/* Estilo del icono dentro del botón */
 .remove-button i {
-  font-size: 18px; /* Asegúrate de que el icono tenga el tamaño adecuado */
-  color: white;    /* Color blanco para que contraste con el fondo rojo */
+  font-size: 20px; /* Asegúrate de que el icono tenga el tamaño adecuado */
+  color: white;
 }
 
+/* Efecto hover para el botón */
 .remove-button:hover {
-  background-color: #e60000;
+  background-color: #e60000; /* Rojo más oscuro */
+  transform: scale(1.1); /* Hace que el botón se agrande un poco */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra cuando se hace hover */
 }
+
+/* Efecto de foco para accesibilidad */
+.remove-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.3); /* Resalta el botón con un borde rojo claro */
+}
+
 
 
 .cart-total {

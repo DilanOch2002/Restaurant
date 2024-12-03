@@ -17,6 +17,10 @@ const Navbar = () => {
     navigate("/producto");
   };
 
+  const handleNavigateToDashboard = () => {
+    navigate("/dashboard"); // Navegar al dashboard
+  };
+
   const handleLogout = () => {
     navigate("/login"); // Redirige al login
   };
@@ -24,7 +28,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-      <button onClick={handleNavigateToMesas} className="navbar-item">
+        <button onClick={handleNavigateToMesas} className="navbar-item">
           Mesas
         </button>
         <button onClick={handleNavigateToProducto} className="navbar-item">
@@ -32,6 +36,9 @@ const Navbar = () => {
         </button>
         <button onClick={handleNavigateToFactura} className="navbar-item">
           Facturación
+        </button>
+        <button onClick={handleNavigateToDashboard} className="navbar-item">
+          Dashboard
         </button>
       </div>
       <div className="navbar-right">
@@ -47,3 +54,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
